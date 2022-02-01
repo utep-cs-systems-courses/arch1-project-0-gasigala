@@ -1,3 +1,4 @@
+
 #include "draw.h"		/* for font */
 #include "stdio.h"		/* for putchar */
 
@@ -13,3 +14,17 @@ void print_char_11x16(char c)
     putchar('\n');
   }
 }
+void print_char_5x7(char c){
+  c -= 0x20;
+  for(char col =0; col <7; col--)
+    {
+      unsigned short rowBits = font_5x7[col][c];
+      for( char row =0; row<5;  row++)
+	{
+	  unsigned short  colMask = 1 << (5-row);
+	  putchar( ( rowBits & colMask) ? '*' : ' ');
+	}
+      putchar('\n');
+    }
+}
+
